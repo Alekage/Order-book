@@ -1,6 +1,9 @@
 use axum::routing::Router;
 use axum::routing::get;
 
+mod model;
+mod routes;
+
 #[tokio::main]
 async fn main() {
     let app = Router::new().route("/api/add-pair", get(add_pair));
