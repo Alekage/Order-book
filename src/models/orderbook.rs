@@ -1,13 +1,15 @@
 #![allow(unused)]
-
 use std::collections::VecDeque;
 use std::collections::{BTreeMap, HashMap};
 use std::sync::Arc;
 use std::sync::Mutex;
 
-#[derive(PartialEq, Eq, Hash, Clone)]
-pub struct Pair {
-    pair: String,
+
+pub type Pair = String;
+type Price = u64;
+
+pub struct Pairs {
+    pairs: Vec<Pair>,
 }
 
 pub struct LimitOrder {
@@ -15,16 +17,15 @@ pub struct LimitOrder {
     quantity: u64,
 }
 
-type Price = u64;
 
 pub struct OrderBook {
-    bid: BTreeMap<Price, VecDeque<LimitOrder>>,
-    ask: BTreeMap<Price, VecDeque<LimitOrder>>,
+    pub bid: BTreeMap<Price, VecDeque<LimitOrder>>,
+    pub ask: BTreeMap<Price, VecDeque<LimitOrder>>,
 }
 
 #[derive(Clone)]
 pub struct ExchangeModelController {
-    exchange: Arc<Mutex<HashMap<Pair, OrderBook>>>,
+    pub exchange: Arc<Mutex<HashMap<Pair, OrderBook>>>,
 }
 
 impl ExchangeModelController {
