@@ -8,6 +8,10 @@ pub struct PairPayload {
     pub pair: Pair,
 }
 
+pub struct Pairs {
+    pub pairs: Vec<Pair>
+}
+
 pub async fn add_pair(
     State(controller): State<ExchangeModelController>,
     Json(payload): Json<PairPayload>,
@@ -22,3 +26,6 @@ pub async fn add_pair(
         },
     );
 }
+
+
+pub async fn get_pairs(State(controller): State<ExchangeModelController>): Pairs {}
